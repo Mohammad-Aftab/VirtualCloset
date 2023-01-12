@@ -2,6 +2,6 @@ package com.lordsam.virtualcloset.navigation
 
 object Routes {
 
-    val mainScreen = "main_screen"
-    val splashScreen = "splash_screen"
+    const val homeScreen = "home_screen"
+    const val splashScreen = "splash_screen"
 }

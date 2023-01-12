@@ -2,4 +2,8 @@
     <string name="app_name">Virtual Closet</string>
     <string name="app_logo">App Logo</string>
     <string name="by_potatowares">By Potatowares</string>
+    <string name="home">Home</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="category_icon">Category Icon</string>
+    <string name="add_more_button">Add More Button</string>
 </resources>

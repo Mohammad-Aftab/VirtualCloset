@@ -18,7 +18,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.lordsam.virtualcloset.R
@@ -43,7 +42,7 @@ fun SplashScreen(navController: NavController) {
                 })
         )
         delay(3000L)
-        navController.navigate(Routes.mainScreen)
+        navController.navigate(Routes.homeScreen)
     }
     MainBody(scale)
 }
@@ -90,6 +89,7 @@ fun MainBody(scale: Animatable<Float, AnimationVector1D>) {
                     style = MaterialTheme.typography.caption,
                     fontStyle = FontStyle.Normal,
                     modifier = Modifier
+                        .padding(vertical = 8.dp)
                 )
             }
         }
