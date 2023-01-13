@@ -1,6 +1,5 @@
 package com.lordsam.virtualcloset.components
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,16 +22,13 @@ fun CategoryCard(
     imageID: Int,
     text: String
 ){
-    Surface (
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp)
-            ) {
 
         Card (
-            border = BorderStroke(2.dp, MaterialTheme.colors.onBackground),
             shape = RoundedCornerShape(8.dp),
-            elevation = 4.dp
+            elevation = 4.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
                 ) {
 
             Row(
@@ -62,6 +58,5 @@ fun CategoryCard(
                         .padding(start = 8.dp)
                 )
             }
-        }
     }
 }

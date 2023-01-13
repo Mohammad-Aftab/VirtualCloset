@@ -60,7 +60,7 @@ fun HomeScreen(navController: NavController) {
                 onClick = { /*TODO*/ }
             ) {
                 Icon(
-                    imageVector = Icons.Default.Add,
+                    painter = painterResource(id = R.drawable.ic_baseline_photo_camera_24),
                     contentDescription = stringResource(R.string.add_more_button)
                 )
             }
