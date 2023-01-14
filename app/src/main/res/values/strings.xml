@@ -6,4 +6,7 @@
     <string name="search_icon">Search Icon</string>
     <string name="category_icon">Category Icon</string>
     <string name="add_more_button">Add More Button</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="camera_shutter">Camera Shutter</string>
+    <string name="view_gallery">View Gallery</string>
 </resources>

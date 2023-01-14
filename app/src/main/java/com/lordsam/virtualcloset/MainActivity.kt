@@ -12,6 +12,7 @@ import com.lordsam.virtualcloset.navigation.Navigation
 import com.lordsam.virtualcloset.ui.theme.VirtualClosetTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyApp(){
+fun MyApp() {
     VirtualClosetTheme {
         // A surface container using the 'background' color from the theme
         Surface(
@@ -32,3 +33,4 @@ fun MyApp(){
         }
     }
 }
+
