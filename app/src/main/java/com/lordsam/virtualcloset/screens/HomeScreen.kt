@@ -72,8 +72,11 @@ fun HomeScreen(navController: NavController) {
             FloatingActionButton(
                 elevation = FloatingActionButtonDefaults.elevation(),
                 onClick = {
-                    //permissionState.launchPermissionRequest()
-                    navController.navigate(Routes.cameraScreen)
+                    if (permissionState.hasPermission){
+                        navController.navigate(Routes.cameraScreen)
+                    }else {
+                        permissionState.launchPermissionRequest()
+                    }
                 }
             ) {
                 Icon(
