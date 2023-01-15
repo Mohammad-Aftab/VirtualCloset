@@ -2,8 +2,6 @@ package com.lordsam.virtualcloset.screens
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -19,12 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionRequired
-import com.google.accompanist.permissions.PermissionState
-import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.*
 import com.lordsam.virtualcloset.R
-import com.lordsam.virtualcloset.camera.CameraView
 import com.lordsam.virtualcloset.components.CategoryCard
 import com.lordsam.virtualcloset.models.categoryList
 import com.lordsam.virtualcloset.navigation.Routes
@@ -36,8 +30,14 @@ import com.lordsam.virtualcloset.navigation.Routes
 fun HomeScreen(navController: NavController) {
 
     //Camera Permission
-    val permissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
-    CameraPermission(permissionState = permissionState)
+    val permissionState = rememberMultiplePermissionsState(
+        listOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    )
+    ManagePermission(permissionState = permissionState)
 
     Scaffold(
         topBar = {
@@ -72,10 +72,10 @@ fun HomeScreen(navController: NavController) {
             FloatingActionButton(
                 elevation = FloatingActionButtonDefaults.elevation(),
                 onClick = {
-                    if (permissionState.hasPermission){
+                    if (permissionState.allPermissionsGranted){
                         navController.navigate(Routes.cameraScreen)
                     }else {
-                        permissionState.launchPermissionRequest()
+                        permissionState.launchMultiplePermissionRequest()
                     }
                 }
             ) {
@@ -105,13 +105,13 @@ fun HomeScreen(navController: NavController) {
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun CameraPermission(
-    permissionState: PermissionState,
+fun ManagePermission(
+    permissionState: MultiplePermissionsState,
 ) {
     val context = LocalContext.current
 
     PermissionRequired(
-        permissionState = permissionState,
+        permissionState = permissionState.permissions[0],
         permissionNotGrantedContent = {
             /*..*/
         },
@@ -119,6 +119,6 @@ fun CameraPermission(
             Toast.makeText(context, "Permission Not available! Please Check the permission settings.", Toast.LENGTH_SHORT).show()
         }
     ) {
-        Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show()
+        /*..*/
     }
 }

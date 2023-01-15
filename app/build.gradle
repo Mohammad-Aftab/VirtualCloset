@@ -71,7 +71,13 @@ dependencies {
     implementation "androidx.camera:camera-view:$cameraxVersion"
     implementation "androidx.camera:camera-extensions:$cameraxVersion"
 
+    //Coil
+    implementation "io.coil-kt:coil-compose:2.2.2"
+
     // Accompanist
     def accompanistPermissionsVersion = '0.23.1'
     implementation "com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion"
+
+    //Glide
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
 }
