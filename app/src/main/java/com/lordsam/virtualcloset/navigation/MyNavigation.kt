@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.lordsam.virtualcloset.screens.CameraScreen
+import com.lordsam.virtualcloset.screens.ClosetFormScreen
 import com.lordsam.virtualcloset.screens.HomeScreen
 import com.lordsam.virtualcloset.screens.SplashScreen
 
@@ -24,6 +25,10 @@ fun Navigation() {
 
         composable(Routes.cameraScreen) {
             CameraScreen(navController = navController)
+        }
+
+        composable(Routes.closetFormScreen) {
+            ClosetFormScreen(navController = navController)
         }
     }
 }
