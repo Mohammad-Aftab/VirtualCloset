@@ -18,6 +18,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.lordsam.virtualcloset.R
 import com.lordsam.virtualcloset.camera.CameraView
+import com.lordsam.virtualcloset.navigation.Routes
 
 
 @Composable
@@ -80,6 +81,7 @@ fun ImageManger(navController: NavController, photoUri: Uri) {
                     modifier = Modifier
                         .size(80.dp)
                         .clickable {
+                            //Delete photo
                             photoUri.toFile().delete()
                             navController.popBackStack()
                         }
@@ -90,6 +92,9 @@ fun ImageManger(navController: NavController, photoUri: Uri) {
                     contentDescription = "Delete",
                     modifier = Modifier
                         .size(80.dp)
+                        .clickable {
+                            //Send Back to Form Screen with Uri
+                        }
                 )
             }
         }

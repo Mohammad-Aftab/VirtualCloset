@@ -18,11 +18,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavHostController
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.lordsam.virtualcloset.R
 import com.lordsam.virtualcloset.models.getCategories
 import com.lordsam.virtualcloset.navigation.Routes
 
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ClosetFormScreen(navController: NavHostController) {
@@ -98,9 +101,9 @@ fun ClosetFormScreen(navController: NavHostController) {
                             // the DropDown the same width
                             textFieldSize = coordinates.size.toSize()
                         },
-                    label = {Text("Category")},
+                    label = { Text("Category") },
                     trailingIcon = {
-                        Icon(icon,"Drop Down Icon",
+                        Icon(icon, "Drop Down Icon",
                             Modifier.clickable { expandedDropdown = !expandedDropdown })
                     }
                 )
@@ -109,7 +112,7 @@ fun ClosetFormScreen(navController: NavHostController) {
                     expanded = expandedDropdown,
                     onDismissRequest = { expandedDropdown = false },
                     modifier = Modifier
-                        .width(with(LocalDensity.current){textFieldSize.width.toDp()})
+                        .width(with(LocalDensity.current) { textFieldSize.width.toDp() })
                 ) {
                     getCategories().forEach {
                         DropdownMenuItem(onClick = {
