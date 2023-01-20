@@ -1,6 +1,7 @@
 package com.lordsam.virtualcloset.screens
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.clickable
@@ -82,7 +83,9 @@ fun ImageManger(navController: NavController, photoUri: Uri) {
                         .size(80.dp)
                         .clickable {
                             //Delete photo
-                            photoUri.toFile().delete()
+                            photoUri
+                                .toFile()
+                                .delete()
                             navController.popBackStack()
                         }
                 )
@@ -93,7 +96,9 @@ fun ImageManger(navController: NavController, photoUri: Uri) {
                     modifier = Modifier
                         .size(80.dp)
                         .clickable {
-                            //Send Back to Form Screen with Uri
+                            val encodedUri = Uri.encode(photoUri.toString(), "photoUri")
+                            Log.d("uri", "ImageManger: $encodedUri")
+                            navController.navigate(Routes.closetFormScreen + "/$encodedUri")
                         }
                 )
             }

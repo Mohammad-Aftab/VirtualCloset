@@ -1,6 +1,7 @@
 package com.lordsam.virtualcloset.screens
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,6 +18,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import androidx.core.net.toUri
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
@@ -28,7 +30,7 @@ import com.lordsam.virtualcloset.navigation.Routes
 @OptIn(ExperimentalGlideComposeApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ClosetFormScreen(navController: NavHostController) {
+fun ClosetFormScreen(navController: NavHostController, photoUri: String) {
 
     var expandedDropdown by remember {
         mutableStateOf(false)
@@ -80,15 +82,21 @@ fun ClosetFormScreen(navController: NavHostController) {
                     .fillMaxWidth()
             ) {
 
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    contentDescription = "Capture Image",
-                    modifier = Modifier
-                        .size(120.dp)
-                        .clickable {
-                            navController.navigate(Routes.cameraScreen)
-                        }
-                )
+                if (photoUri.isEmpty()) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                        contentDescription = "Capture Image",
+                        modifier = Modifier
+                            .size(120.dp)
+                    )
+                } else {
+                    GlideImage(
+                        model = Uri.decode(photoUri),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(120.dp)
+                    )
+                }
 
                 OutlinedTextField(
                     value = selectedCategory,

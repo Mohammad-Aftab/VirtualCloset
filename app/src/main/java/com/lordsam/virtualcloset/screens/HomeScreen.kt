@@ -73,7 +73,7 @@ fun HomeScreen(navController: NavController) {
                 elevation = FloatingActionButtonDefaults.elevation(),
                 onClick = {
                     if (permissionState.allPermissionsGranted){
-                        navController.navigate(Routes.closetFormScreen)
+                        navController.navigate(Routes.cameraScreen)
                     }else {
                         permissionState.launchMultiplePermissionRequest()
                     }

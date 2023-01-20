@@ -29,8 +29,15 @@ fun Navigation() {
             CameraScreen(navController = navController)
         }
 
-        composable(Routes.closetFormScreen) {
-            ClosetFormScreen(navController = navController)
+        composable(
+            Routes.closetFormScreen + "/{photoUri}",
+            arguments = listOf(navArgument(name = "photoUri"){type = NavType.StringType})
+        ) {
+            ClosetFormScreen(
+                navController = navController,
+                it.arguments?.getString("photoUri")!!
+            )
         }
     }
 }
+
