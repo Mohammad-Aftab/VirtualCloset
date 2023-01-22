@@ -22,6 +22,7 @@ import com.lordsam.virtualcloset.R
 import com.lordsam.virtualcloset.components.CategoryCard
 import com.lordsam.virtualcloset.models.categoryList
 import com.lordsam.virtualcloset.navigation.Routes
+import com.lordsam.virtualcloset.viewmodel.ClosetViewModel
 
 
 @OptIn(ExperimentalPermissionsApi::class)

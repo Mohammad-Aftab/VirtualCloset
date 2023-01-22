@@ -1,7 +1,6 @@
 package com.lordsam.virtualcloset.screens
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.clickable
@@ -20,6 +19,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.lordsam.virtualcloset.R
 import com.lordsam.virtualcloset.camera.CameraView
 import com.lordsam.virtualcloset.navigation.Routes
+import com.lordsam.virtualcloset.viewmodel.ClosetViewModel
 
 
 @Composable

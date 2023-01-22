@@ -2,6 +2,8 @@ package com.lordsam.virtualcloset.screens
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,19 +20,27 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import androidx.core.net.toFile
 import androidx.core.net.toUri
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.lordsam.virtualcloset.R
+import com.lordsam.virtualcloset.data.ClosetData
 import com.lordsam.virtualcloset.models.getCategories
 import com.lordsam.virtualcloset.navigation.Routes
+import com.lordsam.virtualcloset.viewmodel.ClosetViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalGlideComposeApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ClosetFormScreen(navController: NavHostController, photoUri: String) {
+fun ClosetFormScreen(
+    closetViewModel: ClosetViewModel,
+    navController: NavHostController,
+    photoUri: String
+) {
 
     var expandedDropdown by remember {
         mutableStateOf(false)
@@ -164,7 +174,19 @@ fun ClosetFormScreen(navController: NavHostController, photoUri: String) {
                 ) {
 
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            //Save data
+                            val closet = ClosetData(
+                                name = closetName,
+                                category = selectedCategory,
+                                description = closetDescription,
+                                location = closetLocation,
+                                uri = photoUri
+                            )
+
+                            closetViewModel.addCloset(closet)
+                            navController.navigate(Routes.homeScreen)
+                        },
                         modifier = Modifier
                             .padding(4.dp)
                             .weight(1f)
@@ -173,7 +195,11 @@ fun ClosetFormScreen(navController: NavHostController, photoUri: String) {
                     }
 
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            //Delete photo
+                            photoUri.toUri().toFile().delete()
+                            navController.navigate(Routes.homeScreen)
+                        },
                         modifier = Modifier
                             .padding(4.dp)
                             .weight(1f)
