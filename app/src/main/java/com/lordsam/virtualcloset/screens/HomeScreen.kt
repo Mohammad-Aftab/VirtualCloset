@@ -30,6 +30,8 @@ import com.lordsam.virtualcloset.viewmodel.ClosetViewModel
 @Composable
 fun HomeScreen(navController: NavController) {
 
+    val  ctx = LocalContext.current
+
     //Camera Permission
     val permissionState = rememberMultiplePermissionsState(
         listOf(
@@ -97,7 +99,9 @@ fun HomeScreen(navController: NavController) {
                     CategoryCard(
                         imageID = item.imageID,
                         text = item.text
-                    )
+                    ){
+                        navController.navigate(Routes.closetGridScreen + "/${item.text}")
+                    }
                 }
             }
         }

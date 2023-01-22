@@ -8,10 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.lordsam.virtualcloset.screens.CameraScreen
-import com.lordsam.virtualcloset.screens.ClosetFormScreen
-import com.lordsam.virtualcloset.screens.HomeScreen
-import com.lordsam.virtualcloset.screens.SplashScreen
+import com.lordsam.virtualcloset.screens.*
 import com.lordsam.virtualcloset.viewmodel.ClosetViewModel
 
 
@@ -41,6 +38,17 @@ fun Navigation(closetViewModel: ClosetViewModel) {
                 closetViewModel = closetViewModel,
                 navController = navController,
                 photoUri = it.arguments?.getString("photoUri")!!
+            )
+        }
+
+        composable(
+            Routes.closetGridScreen + "/{category}",
+            arguments = listOf(navArgument(name = "category"){type = NavType.StringType})
+        ) {
+            ClosetGridScreen(
+                closetViewModel = closetViewModel,
+                navController = navController,
+                category = it.arguments?.getString("category")!!
             )
         }
     }

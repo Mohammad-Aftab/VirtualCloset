@@ -17,8 +17,7 @@ import javax.inject.Inject
 class ClosetViewModel @Inject constructor(val repository: ClosetRepository): ViewModel() {
 
     private val _closetList = MutableStateFlow<List<ClosetData>>(emptyList())
-    val noteList = _closetList.asStateFlow()
-    //private var noteList = mutableStateListOf<Note>()
+    val closetList = _closetList.asStateFlow()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
