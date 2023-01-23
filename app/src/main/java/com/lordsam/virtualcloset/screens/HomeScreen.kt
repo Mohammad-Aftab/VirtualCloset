@@ -61,12 +61,12 @@ fun HomeScreen(navController: NavController) {
                             .padding(horizontal = 8.dp)
                     )
 
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_baseline_search_24),
-                        contentDescription = stringResource(R.string.search_icon),
-                        modifier = Modifier
-                            .padding(horizontal = 8.dp)
-                    )
+//                    Icon(
+//                        painter = painterResource(id = R.drawable.ic_baseline_search_24),
+//                        contentDescription = stringResource(R.string.search_icon),
+//                        modifier = Modifier
+//                            .padding(horizontal = 8.dp)
+//                    )
                 }
             }
         },

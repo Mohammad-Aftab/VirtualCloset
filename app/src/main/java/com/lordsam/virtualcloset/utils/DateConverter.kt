@@ -12,7 +12,7 @@ class DateConverter {
     }
 
     @TypeConverter
-    fun dataFromTimestamp(timestamp: Long): Date?{
+    fun dataFromTimestamp(timestamp: Long): Date {
         return Date(timestamp)
     }
 }

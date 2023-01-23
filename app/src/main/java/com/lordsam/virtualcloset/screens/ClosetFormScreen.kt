@@ -3,6 +3,7 @@ package com.lordsam.virtualcloset.screens
 import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -41,6 +43,8 @@ fun ClosetFormScreen(
     navController: NavHostController,
     photoUri: String
 ) {
+
+    val ctx = LocalContext.current
 
     var expandedDropdown by remember {
         mutableStateOf(false)
@@ -176,16 +180,30 @@ fun ClosetFormScreen(
                     Button(
                         onClick = {
                             //Save data
-                            val closet = ClosetData(
-                                name = closetName,
-                                category = selectedCategory,
-                                description = closetDescription,
-                                location = closetLocation,
-                                uri = photoUri
-                            )
 
-                            closetViewModel.addCloset(closet)
-                            navController.navigate(Routes.homeScreen)
+                            if (selectedCategory.isEmpty()){
+                                Toast.makeText(ctx, "Please, select a category!", Toast.LENGTH_SHORT).show()
+                            }else if (closetName.isEmpty()){
+                                Toast.makeText(ctx, "Please, enter a name!", Toast.LENGTH_SHORT).show()
+                            }else {
+                                if (closetDescription.isEmpty()){
+                                    closetDescription = "None"
+                                }
+                                if (closetLocation.isEmpty()){
+                                    closetLocation = "None"
+                                }
+                                
+                                val closet = ClosetData(
+                                    name = closetName,
+                                    category = selectedCategory,
+                                    description = closetDescription,
+                                    location = closetLocation,
+                                    uri = photoUri
+                                )
+
+                                closetViewModel.addCloset(closet)
+                                navController.navigate(Routes.homeScreen)
+                            }
                         },
                         modifier = Modifier
                             .padding(4.dp)

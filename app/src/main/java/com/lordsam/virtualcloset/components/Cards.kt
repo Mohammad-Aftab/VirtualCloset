@@ -10,7 +10,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -77,13 +77,39 @@ fun CategoryCard(
 @Composable
 fun ClosetCard(closet: ClosetData){
 
-    Card(
-        shape = RoundedCornerShape(CornerSize(8.dp)),
-        elevation = 8.dp,
-        modifier = Modifier
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+    var modifier by remember {
+        mutableStateOf(
+            Modifier
             .height(128.dp)
             .width(100.dp)
             .padding(4.dp)
+        )
+    }
+
+    val tempDate = closet.dateTime.toString().split(" ")
+    val date = tempDate[1] + " " + tempDate[2] + " " + tempDate[3]
+
+    Card(
+        shape = RoundedCornerShape(CornerSize(8.dp)),
+        elevation = 8.dp,
+        modifier = modifier
+            .clickable {
+                expanded = !expanded
+                modifier = if (expanded){
+                    Modifier
+                        .height(256.dp)
+                        .fillMaxWidth()
+                        .padding(4.dp)
+                } else{
+                    Modifier
+                        .height(128.dp)
+                        .width(100.dp)
+                        .padding(4.dp)
+                }
+            }
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
@@ -95,9 +121,30 @@ fun ClosetCard(closet: ClosetData){
                 model = closet.uri.toUri(),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(80.dp)
             )
-            Text(text = closet.dateTime.toString().trim(), modifier = Modifier.fillMaxWidth())
+            Text(
+                text = closet.name,
+                modifier = Modifier
+                    .padding(4.dp)
+            )
+            if (expanded){
+                Text(
+                    text = "Description: " + closet.description,
+                    modifier = Modifier
+                        .padding(4.dp)
+                )
+                Text(
+                    text = "Kept At: " + closet.location,
+                    modifier = Modifier
+                        .padding(4.dp)
+                )
+                Text(
+                    text = date,
+                    modifier = Modifier
+                        .padding(4.dp)
+                )
+            }
         }
     }
 }
