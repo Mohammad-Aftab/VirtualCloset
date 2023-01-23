@@ -2,9 +2,13 @@ package com.lordsam.virtualcloset.models
 
 
 fun getCategories() = listOf(
-    "Top",
+    "Accessories",
     "Bottom",
-    "Suit",
+    "Footwear",
+    "Jewelery",
+    "Others",
     "Saree",
-    "Shoe"
+    "Suit",
+    "Top",
+    "Under-Garments"
 )

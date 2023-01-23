@@ -80,7 +80,8 @@ fun ImageManger(navController: NavController, photoUri: Uri) {
                     painter = painterResource(id = R.drawable.baseline_clear_24),
                     contentDescription = "Delete",
                     modifier = Modifier
-                        .size(80.dp)
+                        .padding(4.dp)
+                        .size(64.dp)
                         .clickable {
                             //Delete photo
                             photoUri
@@ -94,7 +95,8 @@ fun ImageManger(navController: NavController, photoUri: Uri) {
                     painter = painterResource(id = R.drawable.baseline_check_24),
                     contentDescription = "Delete",
                     modifier = Modifier
-                        .size(80.dp)
+                        .padding(4.dp)
+                        .size(64.dp)
                         .clickable {
                             val encodedUri = Uri.encode(photoUri.toString(), "photoUri")
                             Log.d("uri", "ImageManger: $encodedUri")

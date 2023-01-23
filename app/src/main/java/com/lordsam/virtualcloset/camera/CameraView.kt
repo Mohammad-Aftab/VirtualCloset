@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -132,14 +133,14 @@ fun CameraControls(
     ) {
 
         CameraControl(
-            Icons.Rounded.CheckCircle,
+            R.drawable.baseline_flip_camera_android_24,
             R.string.switch_camera,
             modifier = Modifier.size(64.dp),
             onClick = { cameraUIAction(CameraUIAction.OnSwitchCameraClick) }
         )
 
         CameraControl(
-            Icons.Rounded.AddCircle,
+            R.drawable.baseline_camera_24,
             R.string.camera_shutter,
             modifier = Modifier
                 .size(64.dp)
@@ -148,19 +149,23 @@ fun CameraControls(
             onClick = { cameraUIAction(CameraUIAction.OnCameraClick) }
         )
 
-        CameraControl(
-            Icons.Default.ShoppingCart,
-            R.string.view_gallery,
-            modifier = Modifier.size(64.dp),
-            onClick = { cameraUIAction(CameraUIAction.OnGalleryViewClick) }
-        )
+        Box(
+            modifier = Modifier.size(64.dp)
+        ) {}
+
+//        CameraControl(
+//            Icons.Default.ShoppingCart,
+//            R.string.view_gallery,
+//            modifier = Modifier.size(64.dp),
+//            onClick = { cameraUIAction(CameraUIAction.OnGalleryViewClick) }
+//        )
     }
 }
 
 
 @Composable
 fun CameraControl(
-    imageVector: ImageVector,
+    imageId: Int,
     contentDescId: Int,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
@@ -172,7 +177,7 @@ fun CameraControl(
         modifier = modifier
     ) {
         Icon(
-            imageVector,
+            painter = painterResource(id = imageId),
             contentDescription = stringResource(id = contentDescId),
             modifier = modifier,
             tint = Color.White
