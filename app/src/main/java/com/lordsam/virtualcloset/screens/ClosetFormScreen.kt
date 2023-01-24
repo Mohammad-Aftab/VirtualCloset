@@ -77,7 +77,9 @@ fun ClosetFormScreen(
             ) {
                 Text(
                     text = "Closet Form",
-                    style = MaterialTheme.typography.h6
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier
+                        .padding(4.dp)
                 )
             }
         }
